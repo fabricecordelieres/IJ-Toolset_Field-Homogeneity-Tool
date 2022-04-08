@@ -69,6 +69,6 @@ None
 ## How to install and use the macro/toolset ?
 ### Toolset ImageJ:
 1. Update ImageJ : Help/update puis Ok.
-2. Drag and drop the macro file into ImageJ's installation folder/Macros/Toolset.
+2. Drag and drop the macro file you'll find [here](Toolset/Field_Homogeneity_Tool.ijm) into ImageJ's installation folder/Macros/Toolset.
 3. Under ImageJ's toolbar, click on the last tool on the right side (two red arrows) and select the macro from the drop-down list.
 4. Follow the instructions given under the "what does it do" section.
