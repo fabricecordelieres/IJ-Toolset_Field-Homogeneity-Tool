@@ -72,3 +72,11 @@ None
 2. Drag and drop the macro file you'll find [here](Toolset/Field_Homogeneity_Tool.ijm) into ImageJ's installation folder/Macros/Toolset.
 3. Under ImageJ's toolbar, click on the last tool on the right side (two red arrows) and select the macro from the drop-down list.
 4. Follow the instructions given under the "what does it do" section.
+
+
+## History
+#### Version 1: 08/04/22
+- First release
+
+#### Version 2: 08/04/22
+- Added a checkbox to use a rectangular shape instead of an ellipse for simulations
