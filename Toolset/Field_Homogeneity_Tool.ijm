@@ -8,6 +8,7 @@ var yEllipse=h/2;
 var majorEllipse=(maxOf(w, h))/2;
 var angleEllipse=15;
 var arEllipse=1/5;
+var useRectangle=false;
 var gaussBlurXSigma=(maxOf(w, h))*0.75;
 var gaussBlurYSigma=(maxOf(w, h))*0.5;
 var sdNoise=0.05;
@@ -40,6 +41,7 @@ function simGUI(){
 	Dialog.addNumber("Ellipse_major_axis_length", majorEllipse);
 	Dialog.addSlider("Ellipse_major_axis_angle", 0, 90, angleEllipse);
 	Dialog.addSlider("Ellipse_aspectRatio", 0, 1, arEllipse);
+	Dialog.addCheckbox("Use_a_rectangle_instead_of_ellipse", useRectangle);
 	Dialog.addNumber("Gaussian_blur_x_sigma", gaussBlurXSigma);
 	Dialog.addNumber("Gaussian_blur_y_sigma", gaussBlurYSigma);
 	Dialog.addSlider("Noise_SD", 0, 1, sdNoise);
@@ -53,6 +55,7 @@ function simGUI(){
 	majorEllipse=Dialog.getNumber();
 	angleEllipse=Dialog.getNumber();
 	arEllipse=Dialog.getNumber();
+	useRectangle=Dialog.getCheckbox();
 	gaussBlurXSigma=Dialog.getNumber();
 	gaussBlurYSigma=Dialog.getNumber();
 	sdNoise=Dialog.getNumber();
@@ -62,7 +65,7 @@ function simGUI(){
 function createSimulatedImage(){
 	setBatchMode(true);
 	newImage("Simulated", "32-bit black", w, h, 1);
-	drawEllipseRoi(xEllipse, yEllipse, majorEllipse, angleEllipse, arEllipse);
+	drawIlluminationRoi(xEllipse, yEllipse, majorEllipse, angleEllipse, arEllipse);
 	
 	//Performs rotation before and after gaussian blur to keep the directionality of the original beam
 	run("Rotate... ", "angle="+(-angleEllipse)+" grid=1 interpolation=Bilinear enlarge");
@@ -89,15 +92,17 @@ function createSimulatedImage(){
 }
 
 //---------------------------------------------------------------------------------
-function drawEllipseRoi(xEllipse, yEllipse, majorEllipse, angleEllipse, arEllipse){
+function drawIlluminationRoi(xEllipse, yEllipse, majorEllipse, angleEllipse, arEllipse){
 	x1=xEllipse-(majorEllipse/2)*cos(angleEllipse*PI/180);
 	y1=yEllipse-(majorEllipse/2)*sin(angleEllipse*PI/180);
 	x2=xEllipse+(majorEllipse/2)*cos(angleEllipse*PI/180);
 	y2=yEllipse+(majorEllipse/2)*sin(angleEllipse*PI/180);
 
 	makeEllipse(x1, y1, x2, y2, arEllipse);
+	if(useRectangle) makeRotatedRectangle(x1, y1, x2, y2, majorEllipse);
 	Roi.setStrokeColor("red");
 	Roi.setName("Ellipse");
+	if(useRectangle) Roi.setName("Rectangle");
 	
 	//Add selection to image overlay
 	run("Add Selection...");
@@ -118,6 +123,7 @@ function setMetadata4Sim(){
 	string+="majorEllipse="+majorEllipse+"\n";
 	string+="angleEllipse="+angleEllipse+"\n";
 	string+="arEllipse="+arEllipse+"\n";
+	string+="useRectangle="+useRectangle+"\n";
 	string+="gaussBlurXSigma="+gaussBlurXSigma+"\n";
 	string+="gaussBlurYSigma="+gaussBlurYSigma+"\n";
 	string+="sdNoise="+sdNoise+"\n";
