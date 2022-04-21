@@ -85,6 +85,6 @@ None
 
 - Second release
 - Bug correction:
-    - The calibration metadata were not taken into account. As a result, the centers' coord.inates retrieved in the results table were expressed in units, instead of pixels and misplaced on the image. This bug is now corrected
+    - The calibration metadata were not taken into account. As a result, the centers' coordinates retrieved in the results table were expressed in units, instead of pixels and misplaced on the image. This bug is now corrected
 - Enhancement: 
     - Added a checkbox to use a rectangular shape instead of an ellipse for simulations
