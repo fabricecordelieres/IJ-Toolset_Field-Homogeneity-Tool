@@ -20,6 +20,7 @@ This tools is aimed at generating simulated images of uneven illumination.
 2. The graphical user interface will require several information to generate the image:
     - Image width/height: self-explanatory
     - Ellipse center x/y, major axis length, angle, aspect ratio: an ellipse with the input features will be filled white to simulate the raw illumination spot
+    - Use a rectangle instead of ellipse: self-explanatory
     - Gaussian blur x/y: a gaussian blur is used to simulate the PSF
     - Noise SD: gaussian noise is added to simulation, using the input as SD. NB: the simulations are generated as 32-bit images, the raw illumination spot having an intensity of 255
 3. A new "Simulation" entitled image is generated as follows:
@@ -75,8 +76,15 @@ None
 
 
 ## History
-#### Version 1: 08/04/22
+
+#### Version 2: 21/04/22
+- Second release
+- Bug correction: the calibration metadata were not taken into account. As a result, the centers' coord.inates retrieved in the results table were expressed in units, instead of pixels and misplaced on the image. This bug is now corrected
+- Enhancement: the simulation tool now allows the user to start from a rectangle instead of an ellipse.
+
+
 - First release
+
 
 #### Version 2: 08/04/22
 - Added a checkbox to use a rectangular shape instead of an ellipse for simulations
