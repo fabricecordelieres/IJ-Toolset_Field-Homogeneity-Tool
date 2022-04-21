@@ -214,23 +214,26 @@ function createPolygonFromCenters(){
 
 //---------------------------------------------------------------------------------
 function getCentersInPolygon(){
+	//Retrieve the image calibration
+	getPixelSize(unit, pixelWidth, pixelHeight);
+	
 	//The polygonal ROI is supposed to be the 5th in the ROI Manager: activate it
 	roiManager("Select", 4);
 
 	//Retrieve the geometrical and intensity-weighted center's coordinates
 	List.setMeasurements;
-	x=List.getValue("X");
-	y=List.getValue("Y");
-	xm=List.getValue("XM");
-	ym=List.getValue("YM");
+	x=List.getValue("X")/pixelWidth;
+	y=List.getValue("Y")/pixelHeight;
+	xm=List.getValue("XM")/pixelWidth;
+	ym=List.getValue("YM")/pixelHeight;
 
 	//Find the point of max intensity within the polygonal ROI
 	getStatistics(area, mean, min, max, std, histogram);
 	setThreshold(max, max);
 	run("Create Selection");
 	List.setMeasurements;
-	xmax=List.getValue("X");
-	ymax=List.getValue("Y");
+	xmax=List.getValue("X")/pixelWidth;
+	ymax=List.getValue("Y")/pixelHeight;
 	resetThreshold;
 
 	//Add some colors
@@ -240,14 +243,14 @@ function getCentersInPolygon(){
 	//Log data
 	Table.set("Profile", Table.size, "---");
 	Table.set("Profile", Table.size, "Geometrical_center_in_polygon");
-	Table.set("X_Center", Table.size-1, x);
-	Table.set("Y_Center", Table.size-1, y);
+	Table.set("X_Center_(pixels)", Table.size-1, x);
+	Table.set("Y_Center_(pixels)", Table.size-1, y);
 	Table.set("Profile", Table.size, "Intensity-weighted_center_in_polygon");
-	Table.set("X_Center", Table.size-1, xm);
-	Table.set("Y_Center", Table.size-1, ym);
+	Table.set("X_Center_(pixels)", Table.size-1, xm);
+	Table.set("Y_Center_(pixels)", Table.size-1, ym);
 	Table.set("Profile", Table.size, "Max_intensity_center_in_polygon");
-	Table.set("X_Center", Table.size-1, xmax);
-	Table.set("Y_Center", Table.size-1, ymax);
+	Table.set("X_Center_(pixels)", Table.size-1, xmax);
+	Table.set("Y_Center_(pixels)", Table.size-1, ymax);
 
 	//Add ROIs to the ROI Manager
 	makePoint(x, y, "xxxl magenta circle");
