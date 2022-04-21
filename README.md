@@ -88,3 +88,9 @@ None
     - The calibration metadata were not taken into account. As a result, the centers' coordinates retrieved in the results table were expressed in units, instead of pixels and misplaced on the image. This bug is now corrected
 - Enhancement: 
     - Added a checkbox to use a rectangular shape instead of an ellipse for simulations
+
+#### Version 3: 21/04/22
+
+- Third release
+- Bug correction:
+    - The calibration bug was still present for the positionning of the polygon: went for a more radical workaround by removing the image's calibration before analysis, storing it, then reapplying it afterwards.
