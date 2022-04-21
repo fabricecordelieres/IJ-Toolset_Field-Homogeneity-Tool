@@ -77,14 +77,14 @@ None
 
 ## History
 
-#### Version 2: 21/04/22
-- Second release
-- Bug correction: the calibration metadata were not taken into account. As a result, the centers' coord.inates retrieved in the results table were expressed in units, instead of pixels and misplaced on the image. This bug is now corrected
-- Enhancement: the simulation tool now allows the user to start from a rectangle instead of an ellipse.
-
-
+#### Version 1: 08/04/22
 - First release
 
 
-#### Version 2: 08/04/22
-- Added a checkbox to use a rectangular shape instead of an ellipse for simulations
+#### Version 2: 21/04/22
+
+- Second release
+- Bug correction:
+    - The calibration metadata were not taken into account. As a result, the centers' coord.inates retrieved in the results table were expressed in units, instead of pixels and misplaced on the image. This bug is now corrected
+- Enhancement: 
+    - Added a checkbox to use a rectangular shape instead of an ellipse for simulations
