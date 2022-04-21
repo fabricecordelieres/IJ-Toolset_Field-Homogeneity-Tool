@@ -93,4 +93,4 @@ None
 
 - Third release
 - Bug correction:
-    - The calibration bug was still present for the positionning of the polygon: went for a more radical workaround by removing the image's calibration before analysis, storing it, then reapplying it afterwards.
+    - The calibration bug was still present for the positioning of the polygon: went for a more radical workaround by removing the image's calibration before analysis, storing it, then reapplying it afterwards.
